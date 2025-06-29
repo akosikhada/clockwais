@@ -28,7 +28,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
         onClick={() => setMode("focus")}
         className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 button-hover ${
           mode === "focus"
-            ? "primary-gradient text-white shadow-lg glow-effect"
+            ? "bg-primary text-white shadow-lg glow-effect"
             : "text-slate-600 hover:text-slate-800 hover:bg-slate-50"
         }`}
       >
@@ -45,7 +45,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
                 areBreakButtonsDisabled
                   ? "text-slate-400 cursor-not-allowed opacity-60"
                   : mode === "shortBreak"
-                    ? "primary-gradient text-white shadow-lg glow-effect"
+                    ? "bg-primary text-white shadow-lg glow-effect"
                     : "text-slate-600 hover:text-slate-800 hover:bg-slate-50 button-hover"
               }`}
             >
@@ -70,7 +70,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
                 areBreakButtonsDisabled
                   ? "text-slate-400 cursor-not-allowed opacity-60"
                   : mode === "longBreak"
-                    ? "primary-gradient text-white shadow-lg glow-effect"
+                    ? "bg-primary text-white shadow-lg glow-effect"
                     : "text-slate-600 hover:text-slate-800 hover:bg-slate-50 button-hover"
               }`}
             >
