@@ -36,7 +36,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ className }) => {
 
   return (
     <div
-      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover ${className}`}
+      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 ${className}`}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
