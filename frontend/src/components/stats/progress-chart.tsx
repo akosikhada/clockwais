@@ -16,10 +16,10 @@ export const ProgressChart: React.FC<ProgressChartProps> = ({
 
   return (
     <div
-      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover ${className}`}
+      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 ${className}`}
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-xl accent-gradient flex items-center justify-center">
+        <div className="w-8 h-8 rounded-xl bg-accent flex items-center justify-center">
           <span className="text-white text-sm font-bold">📈</span>
         </div>
         <h3 className="text-lg font-bold text-slate-700">Weekly Progress</h3>
@@ -38,9 +38,9 @@ export const ProgressChart: React.FC<ProgressChartProps> = ({
                 style={{ height: `${height}%` }}
                 className={`w-5 rounded-t-lg ${
                   value >= 4
-                    ? "primary-gradient"
+                    ? "bg-primary"
                     : value >= 2
-                      ? "secondary-gradient"
+                      ? "bg-secondary"
                       : "bg-slate-200"
                 } shadow-md transition-all duration-500`}
               ></div>
