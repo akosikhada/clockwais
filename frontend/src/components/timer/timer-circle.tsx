@@ -15,7 +15,7 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center w-96 h-96 rounded-full bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white mb-8 shadow-2xl border-8 border-white/20 ${className}`}
+      className={`relative flex flex-col items-center justify-center w-96 h-96 rounded-full bg-slate-800 text-white mb-8 shadow-2xl border-8 border-white/20 ${isActive ? "animate-beat" : ""} ${className}`}
     >
       {/* Progress Ring */}
       <div className="absolute inset-4 rounded-full border-4 border-white/10"></div>
@@ -37,7 +37,7 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
                   toggleTimer();
                 }
               }}
-              className="bg-gradient-to-r from-green-400 to-green-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20"
+              className="bg-green-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20"
             >
               Rest
             </Button>
@@ -45,14 +45,14 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
               onClick={() => {
                 /* No functionality yet */
               }}
-              className="bg-gradient-to-r from-blue-400 to-blue-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20"
+              className="bg-blue-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20"
             >
               Play Game
             </Button>
           </div>
           <Button
             onClick={() => setMode("focus")}
-            className="bg-gradient-to-r from-pink-400 to-pink-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20 mt-2"
+            className="bg-primary hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20 mt-2"
           >
             Skip Break
           </Button>
@@ -60,7 +60,7 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
       ) : (
         <Button
           onClick={toggleTimer}
-          className={`absolute bottom-24 primary-gradient hover:shadow-2xl text-white rounded-xl px-10 py-2 text-sm font-medium shadow-lg transition-all duration-300 button-hover border border-white/10 ${
+          className={`absolute bottom-24 bg-primary hover:shadow-2xl text-white rounded-xl px-10 py-2 text-sm font-medium shadow-lg transition-all duration-300 button-hover border border-white/10 ${
             isActive ? "glow-effect" : ""
           }`}
         >
