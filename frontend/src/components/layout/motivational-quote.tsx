@@ -15,7 +15,7 @@ export const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({
 }) => {
   return (
     <div
-      className={`accent-gradient rounded-3xl p-6 text-slate-700 shadow-xl border border-white/30 card-hover ${className}`}
+      className={`accent-gradient rounded-3xl p-6 text-slate-700 shadow-xl border border-white/30 ${className}`}
     >
       <div className="text-3xl mb-4">💭</div>
       <p className="text-sm leading-relaxed mb-4 font-medium">
