@@ -13,16 +13,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 343 75.2% 51.2%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 215 25% 83.9%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 0 75% 78.8%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -72,6 +72,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .card-stylized {
+    @apply bg-card rounded-3xl p-6 border border-slate-200/90 shadow-md;
+    transition: all 0.2s ease-in-out;
+  }
+  .card-stylized:hover {
+    @apply border-slate-300 shadow-lg;
   }
 }
 
@@ -128,15 +138,15 @@ html {
 
 /* Custom CSS */
 .primary-gradient {
-  @apply bg-gradient-to-r from-pink-500 to-blue-500;
+  @apply bg-primary;
 }
 
 .secondary-gradient {
-  @apply bg-gradient-to-r from-purple-500 to-indigo-500;
+  @apply bg-secondary;
 }
 
 .accent-gradient {
-  @apply bg-gradient-to-r from-yellow-200 to-pink-200;
+  @apply bg-accent;
 }
 
 .glow-effect {
@@ -144,18 +154,28 @@ html {
 }
 
 .button-hover {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .button-hover:hover {
   transform: translateY(-2px);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.card-hover {
-  transition: all 0.3s ease;
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(224, 37, 90, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(224, 37, 90, 0.6);
+  }
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+.animate-beat {
+  animation: beat 2.5s infinite ease-in-out;
 }
