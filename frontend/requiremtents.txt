@@ -1,5 +1,0 @@
-# frontend foldering system
-
-[dependencies]
-next
-typescript @types/node @types/react @types/react-dom
