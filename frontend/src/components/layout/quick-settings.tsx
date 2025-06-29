@@ -7,7 +7,8 @@ interface SettingItemProps {
   label: string;
   isEnabled: boolean;
   onToggle: () => void;
-  bgColor: string;
+  iconBgColor: string;
+  rowBgColor: string;
 }
 
 const SettingItem: React.FC<SettingItemProps> = ({
@@ -15,21 +16,16 @@ const SettingItem: React.FC<SettingItemProps> = ({
   label,
   isEnabled,
   onToggle,
-  bgColor,
+  iconBgColor,
+  rowBgColor,
 }) => {
   return (
     <div
-      className={`flex items-center justify-between p-3 rounded-xl ${bgColor} border border-${
-        isEnabled ? "pink" : "blue"
-      }-100`}
+      className={`flex items-center justify-between p-3 rounded-xl ${rowBgColor} border border-pink-100/50`}
     >
       <div className="flex items-center gap-3">
         <div
-          className={`w-8 h-8 rounded-xl bg-gradient-to-r from-${
-            isEnabled ? "pink" : "blue"
-          }-400 to-${
-            isEnabled ? "pink" : "blue"
-          }-500 flex items-center justify-center`}
+          className={`w-8 h-8 rounded-xl ${iconBgColor} flex items-center justify-center`}
         >
           <span className="text-white text-sm">{icon}</span>
         </div>
@@ -38,7 +34,7 @@ const SettingItem: React.FC<SettingItemProps> = ({
       <div
         onClick={onToggle}
         className={`w-14 h-7 ${
-          isEnabled ? "primary-gradient" : "bg-slate-300"
+          isEnabled ? "bg-primary" : "bg-slate-300"
         } rounded-full relative cursor-pointer button-hover shadow-lg`}
       >
         <div
@@ -61,10 +57,10 @@ export const QuickSettings: React.FC<QuickSettingsProps> = ({ className }) => {
 
   return (
     <div
-      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover ${className}`}
+      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 ${className}`}
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-xl primary-gradient flex items-center justify-center">
+        <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
           <span className="text-white text-sm font-bold">⚙️</span>
         </div>
         <h3 className="text-lg font-bold text-slate-700">Quick Settings</h3>
@@ -75,7 +71,8 @@ export const QuickSettings: React.FC<QuickSettingsProps> = ({ className }) => {
           label="Sound"
           isEnabled={soundEnabled}
           onToggle={() => setSoundEnabled(!soundEnabled)}
-          bgColor="bg-gradient-to-r from-pink-50 to-blue-50"
+          iconBgColor={soundEnabled ? "bg-primary" : "bg-secondary"}
+          rowBgColor={soundEnabled ? "bg-primary/10" : "bg-secondary/10"}
         />
 
         <SettingItem
@@ -83,20 +80,23 @@ export const QuickSettings: React.FC<QuickSettingsProps> = ({ className }) => {
           label="Notifications"
           isEnabled={notificationsEnabled}
           onToggle={() => setNotificationsEnabled(!notificationsEnabled)}
-          bgColor="bg-gradient-to-r from-blue-50 to-pink-50"
+          iconBgColor={notificationsEnabled ? "bg-primary" : "bg-secondary"}
+          rowBgColor={
+            notificationsEnabled ? "bg-primary/10" : "bg-secondary/10"
+          }
         />
 
-        <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-100">
+        <div className="flex items-center justify-between p-3 rounded-xl bg-primary/10 border border-pink-100/50">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
               <span className="text-white text-sm">⚙️</span>
             </div>
             <span className="text-sm font-semibold text-slate-700">
               Timer Settings
             </span>
           </div>
-          <div className="w-8 h-8 rounded-xl bg-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-all duration-300 button-hover border border-pink-200">
-            <span className="text-sm text-pink-600">→</span>
+          <div className="w-8 h-8 rounded-xl bg-primary shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-all duration-300 button-hover">
+            <span className="text-sm text-white font-bold">→</span>
           </div>
         </div>
       </div>
