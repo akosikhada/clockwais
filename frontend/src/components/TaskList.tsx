@@ -44,14 +44,14 @@ const TaskList = ({
   const handleTaskToggle = (taskId: string) => {
     setLocalTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task,
-      ),
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
     );
     onTaskComplete(taskId);
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover">
+    <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl accent-gradient flex items-center justify-center">
