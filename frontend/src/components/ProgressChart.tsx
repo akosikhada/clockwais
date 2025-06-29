@@ -20,9 +20,9 @@ const ProgressChart = ({
   const maxValue = Math.max(...weeklyData, 8); // Set minimum max value to 8 for consistent scale
 
   return (
-    <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover">
+    <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-xl primary-gradient flex items-center justify-center">
+        <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
           <span className="text-white text-sm font-bold">📈</span>
         </div>
         <h3 className="text-lg font-bold text-slate-700">Weekly Progress</h3>
@@ -47,8 +47,8 @@ const ProgressChart = ({
                 <div
                   className={`w-full rounded-t-2xl transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg ${
                     isToday
-                      ? "primary-gradient glow-effect"
-                      : "secondary-gradient hover:shadow-xl"
+                      ? "bg-primary glow-effect"
+                      : "bg-secondary hover:shadow-xl"
                   }`}
                   style={{ height: `${heightPercentage}%` }}
                 />
