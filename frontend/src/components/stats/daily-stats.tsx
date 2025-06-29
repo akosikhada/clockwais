@@ -17,36 +17,38 @@ export const DailyStats: React.FC<DailyStatsProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 card-hover ${className}`}
-    >
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-8 h-8 rounded-xl primary-gradient flex items-center justify-center">
-          <span className="text-white text-sm font-bold">📊</span>
+    <div className={`card-stylized ${className}`}>
+      <div className="flex items-center gap-3 mb-4">
+        <div className="text-2xl text-primary">
+          <span>📊</span>
         </div>
-        <h3 className="text-lg font-bold text-slate-700">Daily Stats</h3>
+        <h3 className="text-lg font-bold text-slate-800">Daily Stats</h3>
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-2">
         <StatCard
           icon={<span>⏱️</span>}
           title="Focus Time"
           value={focusTime}
-          bgColor="bg-gradient-to-r from-pink-400 to-blue-400"
+          iconColorClass="text-primary"
         />
+
+        <hr className="border-slate-200/80 my-1" />
 
         <StatCard
           icon={<span>🎯</span>}
           title="Completed Sessions"
           value={completedSessions}
-          bgColor="bg-gradient-to-r from-blue-400 to-purple-400"
+          iconColorClass="text-blue-500"
         />
+
+        <hr className="border-slate-200/80 my-1" />
 
         <StatCard
           icon={<span>🔥</span>}
           title="Daily Streak"
           value={dailyStreak}
-          bgColor="bg-gradient-to-r from-orange-400 to-red-400"
+          iconColorClass="text-amber-500"
         />
       </div>
     </div>
