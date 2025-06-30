@@ -25,43 +25,63 @@ interface GameInfo {
   description: string;
   bgColor: string;
   icon: React.ReactNode;
+  link: string;
 }
 
 const SAMPLE_GAMES: GameInfo[] = [
   {
     id: "game1",
-    title: "Tetris Focus",
-    description: "Classic block-stacking game to improve concentration",
+    title: "Tic Tac Toe",
+    description:
+      "A simple two-player strategy game where players take turns marking X or O in a 3×3 grid. The first to align three symbols horizontally, vertically, or diagonally wins.",
     bgColor: "from-blue-600 to-blue-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://bejofo.com/",
   },
   {
     id: "game2",
-    title: "Memory Match",
-    description: "Train your memory with this matching card game",
+    title: "TagPro (KoalaBeast)",
+    description:
+      "A fast-paced, online multiplayer capture-the-flag game featuring rolling balls. Players use teamwork, speed boosts, and power-ups to grab the enemy flag while defending their own.",
     bgColor: "from-green-600 to-green-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://tagpro.koalabeast.com/games/select",
   },
   {
     id: "game3",
-    title: "Sudoku Break",
-    description: "Exercise your brain with number puzzles",
+    title: "Gartic Phone",
+    description:
+      "An online party game that combines drawing and telephone. Players alternately draw and describe prompts, often leading to hilarious misinterpretations by the end of each round.",
     bgColor: "from-red-600 to-red-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://garticphone.com/",
   },
   {
     id: "game4",
-    title: "Word Jumble",
-    description: "Unscramble words to boost your vocabulary",
+    title: "Tank Battle",
+    description:
+      "An action-packed tank shooting game on Y8 where players control tanks in head-to-head combat or team battles. It often includes power-ups and destructible terrain for added strategy.",
     bgColor: "from-purple-600 to-purple-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://www.y8.com/games/az",
   },
   {
     id: "game5",
-    title: "Brain Teaser",
-    description: "Challenge your mind with logic puzzles",
+    title: "Bomberman",
+    description:
+      "A classic arcade game where players plant bombs to destroy obstacles and defeat enemies or other players. Timing and movement are key to survive and outsmart opponents.",
     bgColor: "from-amber-600 to-amber-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://www.retrogames.cz/play_085-NES.php",
+  },
+  {
+    id: "game6",
+    title: "Skribbl",
+    description:
+      "An online drawing and guessing game. One player draws a word while others try to guess it in real time. Points are awarded for correct guesses and drawing accuracy.",
+    bgColor: "from-amber-600 to-amber-900",
+    icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://skribbl.io/",
   },
 ];
 
@@ -216,7 +236,20 @@ export const GameModal: React.FC<GameModalProps> = ({ isOpen, onClose }) => {
                   className="bg-primary hover:bg-primary/90 text-white w-full py-6 text-lg font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:shadow-xl"
                   onClick={() => {
                     // This would normally start the game
-                    alert(`Game "${selectedGame.title}" would start here!`);
+                    console.log(selectedGame.title);
+                    if (selectedGame.title === "Tic Tac Toe") {
+                      window.open(selectedGame.link, "_blank");
+                    } else if (selectedGame.title === "TagPro (KoalaBeast)") {
+                      window.open(selectedGame.link), "_blank";
+                    } else if (selectedGame.title === "Gartic Phone") {
+                      window.open(selectedGame.link), "_blank";
+                    } else if (selectedGame.title === "Tank Battle") {
+                      window.open(selectedGame.link), "_blank";
+                    } else if (selectedGame.title === "Bomberman") {
+                      window.open(selectedGame.link), "_blank";
+                    } else if (selectedGame.title === "Skribbl") {
+                      window.open(selectedGame.link), "_blank";
+                    }
                   }}
                 >
                   Play Now
