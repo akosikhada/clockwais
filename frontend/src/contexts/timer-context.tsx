@@ -1,7 +1,19 @@
 "use client";
 
-import React, { createContext, useContext, ReactNode, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 import { useTimer } from "@/hooks";
+
+interface TimerSettings {
+  focus: number;
+  shortBreak: number;
+  longBreak: number;
+}
 
 interface TimerContextProps {
   time: number;
@@ -16,7 +28,15 @@ interface TimerContextProps {
   incrementSession: () => void;
   focusSessionStarted: boolean;
   isFocusCompleted: boolean;
+  timerSettings: TimerSettings;
+  updateTimerSettings: (settings: TimerSettings) => void;
 }
+
+const DEFAULT_TIMER_SETTINGS: TimerSettings = {
+  focus: 25 * 60, // 25 minutes
+  shortBreak: 5 * 60, // 5 minutes
+  longBreak: 10 * 60, // 10 minutes
+};
 
 const TimerContext = createContext<TimerContextProps | undefined>(undefined);
 
@@ -42,17 +62,43 @@ export const TimerProvider = ({
   const [totalSessions] = useState(maxSessions);
   const [focusSessionStarted, setFocusSessionStarted] = useState(false);
   const [isFocusCompleted, setIsFocusCompleted] = useState(false);
+  const [timerSettings, setTimerSettings] = useState<TimerSettings>(
+    DEFAULT_TIMER_SETTINGS
+  );
+
+  // Load timer settings from localStorage on mount
+  useEffect(() => {
+    const loadSettings = () => {
+      try {
+        const savedSettings = localStorage.getItem("timerSettings");
+        if (savedSettings) {
+          const parsedSettings = JSON.parse(savedSettings);
+          setTimerSettings({
+            focus: parsedSettings.focus || DEFAULT_TIMER_SETTINGS.focus,
+            shortBreak:
+              parsedSettings.shortBreak || DEFAULT_TIMER_SETTINGS.shortBreak,
+            longBreak:
+              parsedSettings.longBreak || DEFAULT_TIMER_SETTINGS.longBreak,
+          });
+        }
+      } catch (error) {
+        console.error("Error loading timer settings:", error);
+      }
+    };
+
+    loadSettings();
+  }, []);
 
   const getTimeForMode = (mode: "focus" | "shortBreak" | "longBreak") => {
     switch (mode) {
       case "focus":
-        return 25 * 60; // 25 minutes
+        return timerSettings.focus;
       case "shortBreak":
-        return 5 * 60; // 5 minutes
+        return timerSettings.shortBreak;
       case "longBreak":
-        return 10 * 60; // 10 minutes
+        return timerSettings.longBreak;
       default:
-        return 25 * 60;
+        return timerSettings.focus;
     }
   };
 
@@ -102,6 +148,12 @@ export const TimerProvider = ({
   };
 
   const handleModeChange = (newMode: "focus" | "shortBreak" | "longBreak") => {
+    // Prevent mode change if we're already in focus mode and have started a timer
+    if (mode === "focus" && newMode === "focus" && focusSessionStarted) {
+      // Don't allow resetting an active focus session by clicking the focus button again
+      return;
+    }
+
     // Only allow switching to break modes if focus is completed
     // or if we're switching to focus mode
     if (newMode !== "focus" && !isFocusCompleted && focusSessionStarted) {
@@ -113,7 +165,8 @@ export const TimerProvider = ({
     resetTimer(getTimeForMode(newMode));
 
     // Reset focus states when starting a new focus session
-    if (newMode === "focus") {
+    // but only if we weren't already in focus mode
+    if (newMode === "focus" && mode !== "focus") {
       setFocusSessionStarted(false);
       setIsFocusCompleted(false);
     }
@@ -131,6 +184,18 @@ export const TimerProvider = ({
     });
   };
 
+  const updateTimerSettings = (settings: TimerSettings) => {
+    setTimerSettings(settings);
+
+    // Update localStorage
+    localStorage.setItem("timerSettings", JSON.stringify(settings));
+
+    // If timer is not active, reset to new time for current mode
+    if (!isActive) {
+      resetTimer(settings[mode]);
+    }
+  };
+
   return (
     <TimerContext.Provider
       value={{
@@ -146,6 +211,8 @@ export const TimerProvider = ({
         incrementSession,
         focusSessionStarted,
         isFocusCompleted,
+        timerSettings,
+        updateTimerSettings,
       }}
     >
       {children}
