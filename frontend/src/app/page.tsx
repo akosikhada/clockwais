@@ -12,6 +12,7 @@ import {
   LevelProgress,
   CalendarView,
 } from "@/components/layout";
+import TimerSettingsModal from "@/components/timer/timer-settings-modal";
 import { Task, DailyData } from "@/types";
 
 export default function Page() {
@@ -41,6 +42,7 @@ export default function Page() {
 
   const [currentSession, setCurrentSession] = useState(1);
   const [weeklyData, setWeeklyData] = useState([3, 5, 2, 6, 4, 3, 1]);
+  const [isTimerSettingsOpen, setIsTimerSettingsOpen] = useState(false);
 
   // Format minutes to hours and minutes
   const formatTime = (minutes: number) => {
@@ -127,6 +129,10 @@ export default function Page() {
                 onSessionComplete={handleSessionComplete}
                 currentSession={currentSession}
                 totalSessions={8}
+                timerSettingsProps={{
+                  isOpen: isTimerSettingsOpen,
+                  onClose: () => setIsTimerSettingsOpen(false),
+                }}
               />
 
               {/* Tasks Section */}
@@ -144,7 +150,9 @@ export default function Page() {
               <ProgressChart weeklyData={weeklyData} />
 
               {/* Quick Settings */}
-              <QuickSettings />
+              <QuickSettings
+                onOpenTimerSettings={() => setIsTimerSettingsOpen(true)}
+              />
 
               {/* Level Progress */}
               <LevelProgress level={5} progress={75} />

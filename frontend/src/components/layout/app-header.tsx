@@ -2,7 +2,6 @@
 
 import React from "react";
 import { format } from "date-fns";
-import { ThemeSwitcher } from "@/components/layout/theme-switcher";
 
 interface AppHeaderProps {
   className?: string;
@@ -13,7 +12,9 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
   const currentTime = format(new Date(), "h:mm a");
 
   return (
-    <div className={`relative flex items-center justify-between mb-10 ${className}`}>
+    <div
+      className={`relative flex items-center justify-between mb-10 ${className}`}
+    >
       {/* Left side: Logo and Title */}
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-2xl primary-gradient flex items-center justify-center shadow-lg glow-effect">
@@ -39,9 +40,8 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
         <div className="text-slate-500 text-xs">{currentTime}</div>
       </div>
 
-      {/* Right side: Theme Switcher and Icon */}
+      {/* Right side: Profile Icon */}
       <div className="flex items-center gap-3">
-        <ThemeSwitcher />
         <div className="w-12 h-12 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:shadow-lg transition-all duration-300 button-hover border border-white/50 shadow-md">
           <div className="w-6 h-6 rounded-xl accent-gradient flex items-center justify-center">
             <div className="w-3 h-3 rounded-lg bg-slate-600"></div>

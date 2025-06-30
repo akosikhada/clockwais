@@ -53,7 +53,6 @@ According to Gallup's 2024 State of the Global Workplace report, only 23% of emp
 
 - Node.js 18.x or higher
 - npm or yarn
-- Python 3.8+ (for backend)
 
 ### Frontend Setup
 
