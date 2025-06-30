@@ -3,6 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useTimerContext } from "@/contexts";
+import { url } from "inspector";
 
 interface TimerCircleProps {
   className?: string;
@@ -12,6 +13,20 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
   const { formattedTime, isActive, toggleTimer, mode, setMode } =
     useTimerContext();
   const isBreakMode = mode === "shortBreak" || mode === "longBreak";
+
+  const listOfGames = [
+    "https://bejofo.com/",
+    "https://tagpro.koalabeast.com/",
+    "https://garticphone.com/",
+    "https://www.y8.com/games/az",
+    "https://www.retrogames.cz/play_085-NES.php",
+    "https://skribbl.io/",
+  ];
+
+  const randomizeGame = () => {
+    const randomNumber = Math.floor(Math.random() * listOfGames.length);
+    return listOfGames[randomNumber];
+  };
 
   return (
     <div
@@ -44,6 +59,9 @@ export const TimerCircle: React.FC<TimerCircleProps> = ({ className }) => {
             <Button
               onClick={() => {
                 /* No functionality yet */
+                const urlGame = randomizeGame();
+                window.open(urlGame, "_blank");
+                toggleTimer();
               }}
               className="bg-blue-500 hover:shadow-2xl text-white rounded-lg px-5 py-1 text-sm font-medium shadow-xl transition-all duration-300 button-hover border border-white/20"
             >
