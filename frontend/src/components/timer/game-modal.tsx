@@ -186,7 +186,7 @@ export const GameModal: React.FC<GameModalProps> = ({ isOpen, onClose }) => {
                     )}
                   >
                     <div
-                      className={`h-full w-full bg-gradient-to-br ${game.bgColor} flex flex-col items-center justify-center p-6 relative`}
+                      className={`h-full w-full bg-gradient-to-br ${game.bgColor} flex flex-col items-center justify-center relative`}
                     >
                       {/* Subtle pattern overlay */}
                       <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDAiPjwvcmVjdD4KPC9zdmc+')]"></div>
