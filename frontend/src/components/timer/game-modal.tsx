@@ -25,15 +25,8 @@ interface GameInfo {
   description: string;
   bgColor: string;
   icon: React.ReactNode;
+  link: string;
 }
-const listOfGames = [
-  "https://bejofo.com/",
-  "https://tagpro.koalabeast.com/games/select",
-  "https://garticphone.com/",
-  "https://www.y8.com/games/az",
-  "https://www.retrogames.cz/play_085-NES.php",
-  "https://skribbl.io/",
-];
 
 const SAMPLE_GAMES: GameInfo[] = [
   {
@@ -43,6 +36,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "A simple two-player strategy game where players take turns marking X or O in a 3×3 grid. The first to align three symbols horizontally, vertically, or diagonally wins.",
     bgColor: "from-blue-600 to-blue-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://bejofo.com/",
   },
   {
     id: "game2",
@@ -51,6 +45,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "A fast-paced, online multiplayer capture-the-flag game featuring rolling balls. Players use teamwork, speed boosts, and power-ups to grab the enemy flag while defending their own.",
     bgColor: "from-green-600 to-green-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://tagpro.koalabeast.com/games/select",
   },
   {
     id: "game3",
@@ -59,6 +54,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "An online party game that combines drawing and telephone. Players alternately draw and describe prompts, often leading to hilarious misinterpretations by the end of each round.",
     bgColor: "from-red-600 to-red-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://garticphone.com/",
   },
   {
     id: "game4",
@@ -67,6 +63,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "An action-packed tank shooting game on Y8 where players control tanks in head-to-head combat or team battles. It often includes power-ups and destructible terrain for added strategy.",
     bgColor: "from-purple-600 to-purple-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://www.y8.com/games/az",
   },
   {
     id: "game5",
@@ -75,6 +72,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "A classic arcade game where players plant bombs to destroy obstacles and defeat enemies or other players. Timing and movement are key to survive and outsmart opponents.",
     bgColor: "from-amber-600 to-amber-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://www.retrogames.cz/play_085-NES.php",
   },
   {
     id: "game6",
@@ -83,6 +81,7 @@ const SAMPLE_GAMES: GameInfo[] = [
       "An online drawing and guessing game. One player draws a word while others try to guess it in real time. Points are awarded for correct guesses and drawing accuracy.",
     bgColor: "from-amber-600 to-amber-900",
     icon: <GamepadIcon className="h-12 w-12 mb-3 opacity-80" />,
+    link: "https://skribbl.io/",
   },
 ];
 
@@ -239,17 +238,17 @@ export const GameModal: React.FC<GameModalProps> = ({ isOpen, onClose }) => {
                     // This would normally start the game
                     console.log(selectedGame.title);
                     if (selectedGame.title === "Tic Tac Toe") {
-                      window.open(listOfGames[0], "_blank");
+                      window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "TagPro (KoalaBeast)") {
-                      window.open(listOfGames[1]), "_blank";
+                      window.open(selectedGame.link), "_blank";
                     } else if (selectedGame.title === "Gartic Phone") {
-                      window.open(listOfGames[2]), "_blank";
+                      window.open(selectedGame.link), "_blank";
                     } else if (selectedGame.title === "Tank Battle") {
-                      window.open(listOfGames[3]), "_blank";
+                      window.open(selectedGame.link), "_blank";
                     } else if (selectedGame.title === "Bomberman") {
-                      window.open(listOfGames[4]), "_blank";
+                      window.open(selectedGame.link), "_blank";
                     } else if (selectedGame.title === "Skribbl") {
-                      window.open(listOfGames[5]), "_blank";
+                      window.open(selectedGame.link), "_blank";
                     }
                   }}
                 >
