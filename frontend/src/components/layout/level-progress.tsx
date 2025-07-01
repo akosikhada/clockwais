@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Trophy } from "lucide-react";
 
 interface LevelProgressProps {
   level: number;
@@ -15,28 +16,34 @@ export const LevelProgress: React.FC<LevelProgressProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 ${className}`}
+      className={`bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/30 dark:border-slate-700/30 ${className}`}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl secondary-gradient flex items-center justify-center">
-            <span className="text-white text-sm font-bold">🏆</span>
+          <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
+            <Trophy className="h-5 w-5 text-white" />
           </div>
-          <h3 className="text-lg font-bold text-slate-700">Current Level</h3>
+          <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">
+            Current Level
+          </h3>
         </div>
-        <div className="bg-gradient-to-r from-pink-100 to-purple-100 px-4 py-2 rounded-xl border border-pink-200">
-          <span className="text-sm font-bold text-pink-600">Level {level}</span>
+        <div className="bg-pink-600 dark:bg-pink-900/30 px-5 py-2.5 rounded-xl shadow-sm">
+          <span className="text-lg font-bold text-white">{level}</span>
         </div>
       </div>
-      <div className="w-full bg-slate-200 rounded-2xl h-4 mb-3 shadow-inner">
+
+      <div className="w-full bg-slate-200 dark:bg-slate-700/60 rounded-full h-3 mb-4 shadow-inner overflow-hidden">
         <div
-          className="primary-gradient h-4 rounded-2xl shadow-lg glow-effect transition-all duration-500"
+          className="bg-pink-500 h-3 rounded-full shadow-lg transition-all duration-500"
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <div className="flex justify-between text-xs text-slate-500 px-1">
-        <span>{progress}% complete</span>
-        <span>
+
+      <div className="flex justify-between text-xs font-medium px-1">
+        <span className="text-slate-600 dark:text-slate-400">
+          {progress}% complete
+        </span>
+        <span className="text-slate-600 dark:text-slate-400">
           {100 - progress}% to Level {level + 1}
         </span>
       </div>
