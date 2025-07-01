@@ -20,7 +20,8 @@ export const AddTaskButton: React.FC<AddTaskButtonProps> = ({
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className={`primary-gradient text-white text-sm font-semibold transition-all duration-300 button-hover flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg hover:shadow-xl border border-white/20 ${className}`}
+        data-add-task-button="true"
+        className={`bg-pink-600 text-white text-sm font-semibold transition-all duration-300 button-hover flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg hover:shadow-xl border border-white/20 ${className}`}
       >
         <Plus className="h-4 w-4" />
         Add Task
