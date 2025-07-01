@@ -4,6 +4,7 @@ export interface Task {
   title: string;
   completed: boolean;
   points: number;
+  priority?: "low" | "medium" | "high";
 }
 
 // Timer-related types
