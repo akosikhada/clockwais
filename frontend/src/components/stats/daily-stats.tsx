@@ -17,12 +17,16 @@ export const DailyStats: React.FC<DailyStatsProps> = ({
   className,
 }) => {
   return (
-    <div className={`card-stylized ${className}`}>
+    <div
+      className={`card-stylized dark:bg-slate-800/90 dark:border-slate-700/30 ${className}`}
+    >
       <div className="flex items-center gap-3 mb-4">
         <div className="text-2xl text-primary">
           <span>📊</span>
         </div>
-        <h3 className="text-lg font-bold text-slate-800">Daily Stats</h3>
+        <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">
+          Daily Stats
+        </h3>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -33,7 +37,7 @@ export const DailyStats: React.FC<DailyStatsProps> = ({
           iconColorClass="text-primary"
         />
 
-        <hr className="border-slate-200/80 my-1" />
+        <hr className="border-slate-200/80 dark:border-slate-700/50 my-1" />
 
         <StatCard
           icon={<span>🎯</span>}
@@ -42,7 +46,7 @@ export const DailyStats: React.FC<DailyStatsProps> = ({
           iconColorClass="text-blue-500"
         />
 
-        <hr className="border-slate-200/80 my-1" />
+        <hr className="border-slate-200/80 dark:border-slate-700/50 my-1" />
 
         <StatCard
           icon={<span>🔥</span>}
