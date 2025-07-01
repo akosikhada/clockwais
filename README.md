@@ -1,4 +1,4 @@
-# ClockWais
+# ClockWais 🕒
 
 <div align="center">
   <p><em>Making work enjoyable, one timer at a time</em></p>
@@ -53,6 +53,10 @@ According to Gallup's 2024 State of the Global Workplace report, only 23% of emp
 
 - Node.js 18.x or higher
 - npm or yarn
+- Basic understanding of React and React Hooks
+- Familiarity with Tailwind CSS and its utility-first approach
+- Basic knowledge of Next.js (pages, components, API routes, etc.)
+- Basic knowledge of TypeScript/JavaScript
 
 ### Frontend Setup
 
