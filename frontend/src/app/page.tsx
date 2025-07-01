@@ -12,26 +12,11 @@ import {
   LevelProgress,
   CalendarView,
 } from "@/components/layout";
-import TimerSettingsModal from "@/components/timer/timer-settings-modal";
 import { Task, DailyData } from "@/types";
+import motivationalQuotes from "@/constant/quotes";
 
 export default function Page() {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: "1",
-      title: "Complete project proposal",
-      completed: false,
-      points: 25,
-    },
-    {
-      id: "2",
-      title: "Review team presentations",
-      completed: false,
-      points: 15,
-    },
-    { id: "3", title: "Update documentation", completed: false, points: 20 },
-    { id: "4", title: "Team sync meeting", completed: false, points: 10 },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const [dailyData, setDailyData] = useState<DailyData>({
     focusTime: 205, // 3h 25m in minutes
@@ -61,11 +46,13 @@ export default function Page() {
     setCurrentSession((prev) => prev + 1);
 
     // Update today's data in weekly chart
-    const today = new Date().getDay();
-    const todayIndex = today === 0 ? 6 : today - 1; // Convert Sunday (0) to index 6
+    const today = new Date().getDay(); // 0 is Sunday, 1 is Monday, etc.
     setWeeklyData((prev) => {
       const newData = [...prev];
-      newData[todayIndex] = Math.min(newData[todayIndex] + 1, 8); // Cap at 8 sessions
+      // For the array that starts with Monday (index 0), Sunday is at index 6
+      // We need to convert the day number to the correct index in our array
+      const dayIndex = today === 0 ? 6 : today - 1;
+      newData[dayIndex] = Math.min(newData[dayIndex] + 1, 8); // Cap at 8 sessions
       return newData;
     });
   };
@@ -98,7 +85,7 @@ export default function Page() {
 
   return (
     <AppProvider initialDailyData={dailyData} initialWeeklyData={weeklyData}>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50/30 to-blue-50/30 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-pink-50/30 to-blue-50/30 dark:from-slate-900 dark:via-pink-900/10 dark:to-blue-900/10 p-6 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <AppHeader />
@@ -116,11 +103,8 @@ export default function Page() {
               {/* Calendar */}
               <CalendarView />
 
-              {/* Motivational Quote */}
-              <MotivationalQuote
-                quote="The only way to do great work is to love what you do."
-                author="Steve Jobs"
-              />
+              {/* Motivational Quote - Now using rotating quotes */}
+              <MotivationalQuote quotes={motivationalQuotes} />
             </div>
 
             {/* Center Column - Timer */}
