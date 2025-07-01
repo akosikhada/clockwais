@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Task } from "@/types";
-import { Slider } from "@/components/ui/slider";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -20,13 +20,28 @@ interface AddTaskModalProps {
   onAddTask: (task: Omit<Task, "id">) => void;
 }
 
+type Priority = "low" | "medium" | "high";
+
 export const AddTaskModal: React.FC<AddTaskModalProps> = ({
   isOpen,
   onClose,
   onAddTask,
 }) => {
   const [taskTitle, setTaskTitle] = useState("");
-  const [taskPoints, setTaskPoints] = useState(10);
+  const [priority, setPriority] = useState<Priority>("low");
+
+  const getPriorityPoints = (priority: Priority): number => {
+    switch (priority) {
+      case "low":
+        return 10;
+      case "medium":
+        return 20;
+      case "high":
+        return 30;
+      default:
+        return 10;
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,16 +51,17 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({
       return;
     }
 
-    // Create new task
+    // Create new task with points based on priority
     onAddTask({
       title: taskTitle,
       completed: false,
-      points: taskPoints,
+      points: getPriorityPoints(priority),
+      priority: priority,
     });
 
     // Reset form
     setTaskTitle("");
-    setTaskPoints(10);
+    setPriority("low");
 
     // Close modal
     onClose();
@@ -73,25 +89,40 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({
             </div>
 
             <div className="grid gap-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="taskPoints">Points</Label>
-                <span className="text-sm font-medium bg-primary text-white px-2 py-0.5 rounded-md">
-                  +{taskPoints} pts
-                </span>
-              </div>
-              <div className="flex items-center gap-4 pt-2">
-                <span className="text-sm text-muted-foreground">5</span>
-                <Slider
-                  id="taskPoints"
-                  min={5}
-                  max={30}
-                  step={5}
-                  value={[taskPoints]}
-                  onValueChange={(value) => setTaskPoints(value[0])}
-                  className="flex-1"
-                />
-                <span className="text-sm text-muted-foreground">30</span>
-              </div>
+              <Label>Priority</Label>
+              <RadioGroup
+                value={priority}
+                onValueChange={(value) => setPriority(value as Priority)}
+                className="flex flex-col space-y-1"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="low" id="low" />
+                  <Label htmlFor="low" className="flex items-center">
+                    Low
+                    <span className="ml-2 text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 px-2 py-0.5 rounded-md">
+                      +10 pts
+                    </span>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="medium" id="medium" />
+                  <Label htmlFor="medium" className="flex items-center">
+                    Medium
+                    <span className="ml-2 text-sm font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100 px-2 py-0.5 rounded-md">
+                      +20 pts
+                    </span>
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="high" id="high" />
+                  <Label htmlFor="high" className="flex items-center">
+                    High
+                    <span className="ml-2 text-sm font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100 px-2 py-0.5 rounded-md">
+                      +30 pts
+                    </span>
+                  </Label>
+                </div>
+              </RadioGroup>
             </div>
           </div>
 
