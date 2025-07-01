@@ -21,8 +21,12 @@ export const StatCard: React.FC<StatCardProps> = ({
     <div className={`flex items-center gap-4 py-2 ${className}`}>
       <div className={`text-2xl ${iconColorClass}`}>{icon}</div>
       <div className="flex-grow">
-        <div className="text-sm font-medium text-slate-500">{title}</div>
-        <div className="text-xl font-bold text-slate-800">{value}</div>
+        <div className="text-sm font-medium text-slate-500 dark:text-slate-400">
+          {title}
+        </div>
+        <div className="text-xl font-bold text-slate-800 dark:text-slate-200">
+          {value}
+        </div>
       </div>
     </div>
   );
