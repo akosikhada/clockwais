@@ -22,14 +22,14 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
 
   return (
     <div
-      className={`flex items-center gap-1 mb-10 bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/30 ${className}`}
+      className={`flex items-center gap-1 mb-10 bg-white/80 dark:bg-slate-800/90 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/30 dark:border-slate-700/50 ${className}`}
     >
       <button
         onClick={() => setMode("focus")}
         className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 button-hover ${
           mode === "focus"
-            ? "bg-primary text-white shadow-lg glow-effect"
-            : "text-slate-600 hover:text-slate-800 hover:bg-slate-50"
+            ? "bg-pink-600 text-white shadow-lg"
+            : "text-slate-600 dark:text-slate-300 hover:text-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 dark:hover:text-white"
         }`}
       >
         Focus
@@ -43,17 +43,17 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
               disabled={areBreakButtonsDisabled}
               className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 areBreakButtonsDisabled
-                  ? "text-slate-400 cursor-not-allowed opacity-60"
+                  ? "text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-60"
                   : mode === "shortBreak"
-                    ? "bg-primary text-white shadow-lg glow-effect"
-                    : "text-slate-600 hover:text-slate-800 hover:bg-slate-50 button-hover"
+                    ? "bg-pink-600 text-white shadow-lg"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 dark:hover:text-white button-hover"
               }`}
             >
               Short Break
             </button>
           </TooltipTrigger>
           {areBreakButtonsDisabled && (
-            <TooltipContent>
+            <TooltipContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200">
               <p className="text-xs">Finish your focus session first</p>
             </TooltipContent>
           )}
@@ -68,17 +68,17 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({ className }) => {
               disabled={areBreakButtonsDisabled}
               className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 areBreakButtonsDisabled
-                  ? "text-slate-400 cursor-not-allowed opacity-60"
+                  ? "text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-60"
                   : mode === "longBreak"
-                    ? "bg-primary text-white shadow-lg glow-effect"
-                    : "text-slate-600 hover:text-slate-800 hover:bg-slate-50 button-hover"
+                    ? "bg-pink-600 text-white shadow-lg"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 dark:hover:text-white button-hover"
               }`}
             >
               Long Break
             </button>
           </TooltipTrigger>
           {areBreakButtonsDisabled && (
-            <TooltipContent>
+            <TooltipContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200">
               <p className="text-xs">Finish your focus session first</p>
             </TooltipContent>
           )}
