@@ -233,26 +233,27 @@ export const GameModal: React.FC<GameModalProps> = ({ isOpen, onClose }) => {
                   {selectedGame.description}
                 </p>
                 <Button
-                  className="bg-primary hover:bg-primary/90 text-white w-full py-6 text-lg font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:shadow-xl"
+                  className="bg-pink-600 hover:bg-pink-700 text-white w-full py-6 text-lg font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-pink-500/20 hover:shadow-xl"
                   onClick={() => {
                     // This would normally start the game
                     console.log(selectedGame.title);
                     if (selectedGame.title === "Tic Tac Toe") {
                       window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "TagPro (KoalaBeast)") {
-                      window.open(selectedGame.link), "_blank";
+                      window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "Gartic Phone") {
-                      window.open(selectedGame.link), "_blank";
+                      window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "Tank Battle") {
-                      window.open(selectedGame.link), "_blank";
+                      window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "Bomberman") {
-                      window.open(selectedGame.link), "_blank";
+                      window.open(selectedGame.link, "_blank");
                     } else if (selectedGame.title === "Skribbl") {
-                      window.open(selectedGame.link), "_blank";
+                      window.open(selectedGame.link, "_blank");
                     }
+                    onClose();
                   }}
                 >
-                  Play Now
+                  Play {selectedGame.title}
                 </Button>
               </div>
             </div>
